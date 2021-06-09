@@ -32,3 +32,9 @@ class InMemoryProposalDriver(ProposalDriver):
 
     def find_all(self):
         return self.proposal_entities
+
+    def find_by_id(self, id):
+        for entity in self.proposal_entities:
+            if entity["id"] == id:
+                return entity
+        raise ProposalNotFound
