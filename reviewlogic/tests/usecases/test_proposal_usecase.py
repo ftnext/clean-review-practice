@@ -8,10 +8,10 @@ from reviewlogic.usecases import proposal_usecase
 
 class ProposalUseCaseTestCase(TestCase):
     def test_list(self):
-        mock_gateway = MagicMock(spec=proposal_gateway.ProposalGateway)
-        usecase = proposal_usecase.ProposalUseCase(mock_gateway)
+        mock_port = MagicMock(spec=proposal_gateway.ProposalPort)
+        usecase = proposal_usecase.ProposalUseCase(mock_port)
 
         actual = usecase.list()
 
-        self.assertEqual(actual, mock_gateway.list.return_value)
-        mock_gateway.list.assert_called_once_with()
+        self.assertEqual(actual, mock_port.list.return_value)
+        mock_port.list.assert_called_once_with()
