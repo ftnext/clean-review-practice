@@ -49,3 +49,15 @@ class ProposalGatewayTestCase(TestCase):
         self.assertEqual(actual, found_proposal)
         self.mock_driver.find_by_id.assert_called_once_with(6)
         from_entity.assert_called_once_with(entity)
+
+    def test_find_by_when_not_found(self):
+        self.mock_driver.find_by_id.side_effect = (
+            proposal_driver.ProposalNotFound
+        )
+        proposal_id = ProposalId(10008)
+
+        with self.assertRaises(ValueError) as cm:
+            self.gateway.find_by(proposal_id)
+
+        self.assertEqual(str(cm.exception), "Id 10008 is not in proposal list")
+        self.mock_driver.find_by_id.assert_called_once_with(10008)

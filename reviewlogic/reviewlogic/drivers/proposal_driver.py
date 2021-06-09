@@ -2,6 +2,10 @@ import abc
 from typing import TypedDict
 
 
+class ProposalNotFound(Exception):
+    pass
+
+
 class ProposalEntity(TypedDict):
     id: int
     title: str
