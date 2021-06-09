@@ -3,6 +3,7 @@ from typing import TypedDict
 
 
 class ProposalEntity(TypedDict):
+    id: int
     title: str
     description: str
 
@@ -15,8 +16,10 @@ class ProposalDriver(metaclass=abc.ABCMeta):
 
 class InMemoryProposalDriver(ProposalDriver):
     proposal_entities = [
-        ProposalEntity(title="Pythonのspamについて", description="spam ham egg"),
-        ProposalEntity(title="熱のこもったプロポーザル", description="とにかく熱い本文"),
+        ProposalEntity(
+            id=1, title="Pythonのspamについて", description="spam ham egg"
+        ),
+        ProposalEntity(id=2, title="熱のこもったプロポーザル", description="とにかく熱い本文"),
     ]
 
     def find_all(self):
