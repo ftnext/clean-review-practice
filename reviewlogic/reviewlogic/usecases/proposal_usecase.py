@@ -4,3 +4,6 @@ class ProposalUseCase:
 
     def list(self):
         return self.port.list()
+
+    def find_by(self, proposal_id):
+        raise NotImplementedError
