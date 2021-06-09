@@ -6,11 +6,12 @@ from reviewlogic.usecases import proposal_usecase
 
 
 class ProposalUseCaseTestCase(TestCase):
+    def setUp(self):
+        self.mock_port = MagicMock(spec=proposal_gateway.ProposalPort)
+        self.usecase = proposal_usecase.ProposalUseCase(self.mock_port)
+
     def test_list(self):
-        mock_port = MagicMock(spec=proposal_gateway.ProposalPort)
-        usecase = proposal_usecase.ProposalUseCase(mock_port)
+        actual = self.usecase.list()
 
-        actual = usecase.list()
-
-        self.assertEqual(actual, mock_port.list.return_value)
-        mock_port.list.assert_called_once_with()
+        self.assertEqual(actual, self.mock_port.list.return_value)
+        self.mock_port.list.assert_called_once_with()
