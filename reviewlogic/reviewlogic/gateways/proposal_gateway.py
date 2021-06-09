@@ -1,0 +1,2 @@
+class ProposalGateway:
+    pass
