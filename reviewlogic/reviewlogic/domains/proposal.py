@@ -16,7 +16,9 @@ class Proposal:
 
     @classmethod
     def from_entity(cls, entity):
-        raise NotImplementedError
+        return cls(
+            ProposalId(entity["id"]), entity["title"], entity["description"]
+        )
 
 
 @dataclass
