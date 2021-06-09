@@ -9,3 +9,6 @@ class ProposalId:
         if value < 0:
             raise ValueError("不正: 0未満")
         object.__setattr__(self, "value", value)
+
+    def __str__(self):
+        return str(self.value)
