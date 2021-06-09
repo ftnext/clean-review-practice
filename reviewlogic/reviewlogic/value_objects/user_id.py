@@ -1,11 +1,5 @@
-from dataclasses import dataclass
+from reviewlogic.value_objects.positive_integer_id import PositiveIntegerId
 
 
-@dataclass(frozen=True)
-class UserId:
-    value: int
-
-    def __init__(self, value) -> None:
-        if value <= 0:
-            raise ValueError("不正: 0以下")
-        object.__setattr__(self, "value", value)
+class UserId(PositiveIntegerId):
+    ...
