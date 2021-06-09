@@ -13,6 +13,10 @@ class ProposalDriver(metaclass=abc.ABCMeta):
     def find_all(self):
         raise NotImplementedError
 
+    @abc.abstractmethod
+    def find_by_id(self, id):
+        raise NotImplementedError
+
 
 class InMemoryProposalDriver(ProposalDriver):
     proposal_entities = [

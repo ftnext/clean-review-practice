@@ -12,7 +12,7 @@ class ProposalPort(metaclass=abc.ABCMeta):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def find_by(self):
+    def find_by(self, proposal_id):
         raise NotImplementedError
 
 
@@ -24,5 +24,5 @@ class ProposalGateway(ProposalPort):
         ]
         return proposal.Proposals(proposals)
 
-    def find_by(self):
+    def find_by(self, proposal_id):
         raise NotImplementedError
