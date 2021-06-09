@@ -1,14 +1,15 @@
 from unittest import TestCase
 
 from reviewlogic.domains import proposal
+from reviewlogic.value_objects import ProposalId
 
 
 class ProposalsTestCase(TestCase):
     def setUp(self):
         self.proposals = proposal.Proposals(
             [
-                proposal.Proposal("Title 1", "Description 1"),
-                proposal.Proposal("Title 2", "Description 2"),
+                proposal.Proposal(ProposalId(1), "Title 1", "Description 1"),
+                proposal.Proposal(ProposalId(2), "Title 2", "Description 2"),
             ]
         )
 

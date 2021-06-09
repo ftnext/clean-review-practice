@@ -2,12 +2,15 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import NewType
 
+from reviewlogic.value_objects import ProposalId
+
 Title = NewType("Title", str)
 Description = NewType("Description", str)
 
 
 @dataclass
 class Proposal:
+    id: ProposalId
     title: Title
     description: Description
 
