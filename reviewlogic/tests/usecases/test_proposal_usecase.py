@@ -1,5 +1,4 @@
 from unittest import TestCase
-from unittest import mock
 from unittest.mock import MagicMock
 
 from reviewlogic.gateways import proposal_gateway
