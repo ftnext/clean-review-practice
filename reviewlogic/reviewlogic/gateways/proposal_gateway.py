@@ -25,4 +25,5 @@ class ProposalGateway(ProposalPort):
         return proposal.Proposals(proposals)
 
     def find_by(self, proposal_id):
-        raise NotImplementedError
+        entity = self.driver.find_by_id(proposal_id.value)
+        return proposal.Proposal.from_entity(entity)
