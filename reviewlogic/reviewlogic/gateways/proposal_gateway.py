@@ -11,6 +11,10 @@ class ProposalPort(metaclass=abc.ABCMeta):
     def list(self):
         raise NotImplementedError
 
+    @abc.abstractmethod
+    def find_by(self):
+        raise NotImplementedError
+
 
 class ProposalGateway(ProposalPort):
     def list(self):
@@ -19,3 +23,6 @@ class ProposalGateway(ProposalPort):
             proposal.Proposal.from_entity(entity) for entity in entities
         ]
         return proposal.Proposals(proposals)
+
+    def find_by(self):
+        raise NotImplementedError
