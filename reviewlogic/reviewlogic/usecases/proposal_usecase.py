@@ -3,4 +3,4 @@ class ProposalUseCase:
         self.port = port
 
     def list(self):
-        raise NotImplementedError
+        return self.port.list()

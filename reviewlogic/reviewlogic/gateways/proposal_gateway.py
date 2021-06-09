@@ -1,2 +1,3 @@
 class ProposalGateway:
-    pass
+    def list(self):
+        raise NotImplementedError
