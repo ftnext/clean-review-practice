@@ -1,6 +1,7 @@
 import abc
 
 from reviewlogic.domains import proposal
+from reviewlogic.drivers.proposal_driver import ProposalNotFound
 
 
 class ProposalPort(metaclass=abc.ABCMeta):
@@ -25,5 +26,9 @@ class ProposalGateway(ProposalPort):
         return proposal.Proposals(proposals)
 
     def find_by(self, proposal_id):
-        entity = self.driver.find_by_id(proposal_id.value)
+        try:
+            entity = self.driver.find_by_id(proposal_id.value)
+        except ProposalNotFound:
+            message = f"Id {proposal_id} is not in proposal list"
+            raise ValueError(message)
         return proposal.Proposal.from_entity(entity)
