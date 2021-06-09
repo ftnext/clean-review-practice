@@ -14,4 +14,7 @@ if __name__ == "__main__":
     proposals = usecase.list()
     print("Proposals\n")
     for p in proposals:
-        print(f"- {p.title}")
+        print(f"- {p.id} {p.title}")
+    print("")
+    
+    input("Select id to review target [ex. 108]: ")
