@@ -14,6 +14,10 @@ class Proposal:
     title: Title
     description: Description
 
+    @classmethod
+    def from_entity(cls, entity):
+        raise NotImplementedError
+
 
 @dataclass
 class Proposals(Sequence):

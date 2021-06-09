@@ -4,6 +4,16 @@ from reviewlogic.domains import proposal
 from reviewlogic.value_objects import ProposalId
 
 
+class ProposalTestCase(TestCase):
+    def test_from_entity(self):
+        entity = {"id": 108, "title": "タイトル", "description": "詳細"}
+        expected = proposal.Proposal(ProposalId(108), "タイトル", "詳細")
+
+        actual = proposal.Proposal.from_entity(entity)
+
+        self.assertEqual(actual, expected)
+
+
 class ProposalsTestCase(TestCase):
     def setUp(self):
         self.proposals = proposal.Proposals(
