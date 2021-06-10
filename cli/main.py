@@ -1,21 +1,38 @@
+from reviewlogic.domains import proposal as p
 from reviewlogic.drivers import proposal_driver as pd
 from reviewlogic.gateways import proposal_gateway as pg
 from reviewlogic.usecases import proposal_usecase as pu
 from reviewlogic.value_objects import ProposalId
 
-if __name__ == "__main__":
+
+def configure_proposal_logic() -> pu.ProposalUseCase:
     proposal_driver = pd.InMemoryProposalDriver()
     proposal_port = pg.ProposalGateway(proposal_driver)
-    proposal_usecase = pu.ProposalUseCase(proposal_port)
+    return pu.ProposalUseCase(proposal_port)
+
+
+def show_proposals_list(proposals: p.Proposals) -> None:
+    print("Proposals\n")
+    for p in proposals:
+        print(f"- {p.id} {p.title}")
+    print("")
+
+
+def show_proposal_detail(proposal: p.Proposal) -> None:
+    print(f"{proposal.title} (Id={proposal.id})")
+    print("")
+    print(proposal.description)
+    print("")
+
+
+if __name__ == "__main__":
+    proposal_usecase = configure_proposal_logic()
 
     input("Welcome to the review app [Press Enter]")
     print("")
 
     proposals = proposal_usecase.list()
-    print("Proposals\n")
-    for p in proposals:
-        print(f"- {p.id} {p.title}")
-    print("")
+    show_proposals_list(proposals)
 
     while True:
         entered = input(
@@ -40,7 +57,4 @@ if __name__ == "__main__":
             print(f"Error: {ex}")
             continue
 
-        print(f"{proposal.title} (Id={proposal.id})")
-        print("")
-        print(proposal.description)
-        print("")
+        show_proposal_detail(proposal)
