@@ -1,17 +1,17 @@
-from reviewlogic.drivers import proposal_driver
-from reviewlogic.gateways import proposal_gateway
-from reviewlogic.usecases import proposal_usecase
+from reviewlogic.drivers import proposal_driver as pd
+from reviewlogic.gateways import proposal_gateway as pg
+from reviewlogic.usecases import proposal_usecase as pu
 from reviewlogic.value_objects import ProposalId
 
 if __name__ == "__main__":
-    driver = proposal_driver.InMemoryProposalDriver()
-    port = proposal_gateway.ProposalGateway(driver)
-    usecase = proposal_usecase.ProposalUseCase(port)
+    proposal_driver = pd.InMemoryProposalDriver()
+    proposal_port = pg.ProposalGateway(proposal_driver)
+    proposal_usecase = pu.ProposalUseCase(proposal_port)
 
     input("Welcome to the review app [Press Enter]")
     print("")
 
-    proposals = usecase.list()
+    proposals = proposal_usecase.list()
     print("Proposals\n")
     for p in proposals:
         print(f"- {p.id} {p.title}")
@@ -35,7 +35,7 @@ if __name__ == "__main__":
 
         proposal_id = ProposalId(entered_id)
         try:
-            proposal = usecase.find_by(proposal_id)
+            proposal = proposal_usecase.find_by(proposal_id)
         except ValueError as ex:
             print(f"Error: {ex}")
             continue
