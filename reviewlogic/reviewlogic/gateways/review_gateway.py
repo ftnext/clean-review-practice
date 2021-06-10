@@ -10,7 +10,7 @@ class ReviewPort(abc.ABC):
         self.driver = driver
 
     @abc.abstractmethod
-    def save(self, review: r.Review):
+    def save(self, review: r.Review) -> ReviewId:
         raise NotImplementedError
 
 
